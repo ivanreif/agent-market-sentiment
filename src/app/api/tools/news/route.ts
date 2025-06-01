@@ -9,6 +9,7 @@ interface NewsItem {
   author?: string;
   content?: string;
   categories?: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   media?: any;
   source: string;
 }
@@ -26,6 +27,7 @@ const parser = new Parser({
 async function fetchFeed(url: string, source: string): Promise<NewsItem[]> {
   try {
     const feed = await parser.parseURL(url);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return feed.items.map((item: any) => ({
       title: item.title,
       link: item.link,

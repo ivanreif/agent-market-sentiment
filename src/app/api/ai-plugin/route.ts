@@ -1,4 +1,4 @@
-import { ACCOUNT_ID, PLUGIN_URL } from "@/app/config";
+import { PLUGIN_URL } from "@/app/config";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -15,7 +15,7 @@ export async function GET() {
             },
         ],
         "x-mb": {
-            "account-id": ACCOUNT_ID,
+            "account-id": "tenkai.ch",
             assistant: {
                 name: "Market Sentiment Assistant",
                 description: "A specialized sentiment analysis assistant that helps users understand market sentiment through multiple data points and indicators. It provides insights into market psychology and helps make informed decisions based on sentiment analysis and cryptocurrency news from multiple sources.",
