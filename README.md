@@ -1,16 +1,12 @@
-# Bitte AI Agent NextJS Template
+# Market Sentiment Analysis Agent
 
-This template provides a starting point for creating AI agents using the Bitte Protocol with Next.js. It includes pre-configured endpoints and tools that demonstrate common agent functionalities.
+This agent provides real-time market sentiment analysis using the Fear and Greed Index and cryptocurrency news from multiple sources. Built with Next.js and the Bitte Protocol, it offers comprehensive market sentiment insights and analysis.
 
 ## Features
 
-- 🤖 Pre-configured AI agent setup
-- 🛠️ Built-in tools and endpoints:
-  - Blockchain information retrieval
-  - NEAR transaction generation
-  - Reddit frontpage fetching
-  - Twitter share intent generation
-  - Coin flip functionality
+- 🤖 Market Sentiment Analysis
+- 📊 Fear and Greed Index Integration
+- 📰 Multi-source Cryptocurrency News
 - ⚡ Next.js 14 with App Router
 - 🎨 Tailwind CSS for styling
 - 📝 TypeScript support
@@ -41,7 +37,6 @@ pnpm run dev
 ```
 
 This will:
-
 - Start your Next.js application
 - Launch make-agent
 - Prompt you to sign a message in Bitte wallet to create an API key
@@ -60,41 +55,41 @@ This will build the project and not trigger `make-agent deploy`
 
 ## Available Tools
 
-The template includes several pre-built tools:
+The agent includes two powerful market sentiment analysis tools:
 
-### 1. Blockchain Information
+### 1. Fear and Greed Index
 
-- Endpoint: `/api/tools/get-blockchains`
-- Returns a randomized list of blockchain networks
+- Endpoint: `/api/tools/sentiment`
+- Provides real-time market sentiment data from Alternative.me
+- Returns:
+  - Current Fear and Greed Index value (0-100)
+  - Value classification (Extreme Fear to Extreme Greed)
+  - Timestamp and update information
+  - Required attribution
 
-### 2. NEAR Transaction Generator
+### 2. Cryptocurrency News Aggregator
 
-- Endpoint: `/api/tools/create-near-transaction`
-- Creates NEAR transaction payloads for token transfers
-
-### 3. EVM Transaction Generator
-
-- Endpoint: `/api/tools/create-evm-transaction`
-- Creates EVM transaction payloads for native eth transfers
-
-### 4. Twitter Share
-
-- Endpoint: `/api/tools/twitter`
-- Generates Twitter share intent URLs
-
-### 5. Coin Flip
-
-- Endpoint: `/api/tools/coinflip`
-- Simple random coin flip generator
-
-### 6. Get User
-
-- Endpoint: `/api/tools/get-user`
-- Returns the user's account ID
+- Endpoint: `/api/tools/news`
+- Aggregates news from multiple sources:
+  - CoinDesk
+  - Bitcoin Magazine
+- Returns:
+  - Latest news articles with titles, links, and content
+  - Publication dates and authors
+  - Categories and media content
+  - Source attribution and update timestamps
+  - Article counts per source
 
 ## AI Agent Configuration
 
-The template includes a pre-configured AI agent manifest at `/.well-known/ai-plugin.json`. You can customize the agent's behavior by modifying the configuration in `/api/ai-plugins/route.ts`. This route generates and returns the manifest object.
+The agent is configured as a specialized market sentiment analysis assistant that:
+- Analyzes market sentiment using multiple data points
+- Provides insights into market psychology
+- Helps users make informed decisions based on sentiment analysis
+- Offers context and explanations for market indicators
+- Aggregates and analyzes cryptocurrency news from multiple sources
+
+The configuration is defined in `/.well-known/ai-plugin.json` and can be customized by modifying the configuration in `/api/ai-plugins/route.ts`.
 
 ## Deployment
 
@@ -103,34 +98,14 @@ The template includes a pre-configured AI agent manifest at `/.well-known/ai-plu
 3. Add your `BITTE_API_KEY` to the environment variables
 4. The `make-agent deploy` command will automatically run during build
 
-## Making your own agent
-
-Whether you want to add a tool to this boilerplate or make your own standalone agent tool, here's you'll need:
-
-1. Make sure [`make-agent`](https://github.com/BitteProtocol/make-agent) is installed in your project:
-
-```bash
-pnpm install --D make-agent
-```
-
-2. Set up a manifest following the OpenAPI specification that describes your agent and its paths.
-3. Have an api endpoint with the path `GET /api/ai-plugin` that returns your manifest
-
-## Setting up the manifest
-
-Follow the [OpenAPI Specification](https://swagger.io/specification/#schema-1) to add the following fields in the manifest object:
-
-- `openapi`: The OpenAPI specification version that your manifest is following. Usually this is the latest version.
-- `info`: Object containing information about the agent, namely its 'title', 'description' and 'version'.
-- `servers`: Array of objects containing the urls for the deployed instances of the agent.
-- `paths`: Object containing all your agent's paths and their operations.
-- `"x-mb"`: Our custom field, containing the account id of the owner and an 'assistant' object with the agent's metadata, namely the tools it uses, and additional instructions to guide it.
-
 ## Learn More
 
 - [Bitte Protocol Documentation](https://docs.bitte.ai)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [OpenAPI Specification](https://swagger.io/specification/)
+- [Alternative.me Fear & Greed Index](https://alternative.me/crypto/fear-and-greed-index/)
+- [CoinDesk RSS Feed](https://www.coindesk.com/arc/outboundfeeds/rss/)
+- [Bitcoin Magazine RSS Feed](https://bitcoinmagazine.com/.rss/full/)
 
 ## Contributing
 
