@@ -1,4 +1,3 @@
-import { PLUGIN_URL } from "@/app/config";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -11,7 +10,7 @@ export async function GET() {
         },
         servers: [
             {
-                url: PLUGIN_URL,
+                url: "https://agent-market-sentiment.vercel.app",
             },
         ],
         "x-mb": {
@@ -20,7 +19,7 @@ export async function GET() {
                 name: "Market Sentiment Assistant",
                 description: "A specialized sentiment analysis assistant that helps users understand market sentiment through multiple data points and indicators. It provides insights into market psychology and helps make informed decisions based on sentiment analysis and cryptocurrency news from multiple sources.",
                 instructions: "You analyze market sentiment using various indicators, with a primary focus on the Fear and Greed Index and cryptocurrency news from multiple sources. You help users understand market psychology and make informed decisions based on sentiment analysis. When discussing market sentiment, always provide context and explain what the indicators mean for market conditions.",
-                tools: [{ type: "sign-message" }]
+                tools: [{ type: "sentiment" }, { type: "news" }]
             },
         },
         paths: {
