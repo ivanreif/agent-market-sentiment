@@ -20,8 +20,6 @@ This agent provides real-time market sentiment analysis using the Fear and Greed
 ```bash
 # Get your API key from https://key.bitte.ai
 BITTE_API_KEY='your-api-key'
-
-ACCOUNT_ID='your-account.near'
 ```
 
 3. Install dependencies:
