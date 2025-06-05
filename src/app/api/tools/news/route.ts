@@ -1,16 +1,37 @@
 import { NextResponse } from 'next/server';
 import Parser from 'rss-parser';
 
-// Define types for our RSS feed items
+// Define types for RSS feed items based on actual feed structure
+interface CategoryObject {
+  _: string;
+  $: {
+    domain: string;
+  };
+}
+
+interface MediaObject {
+  $: {
+    url: string;
+    type: string;
+    medium: string;
+  };
+}
+
+interface CustomItem extends Parser.Item {
+  author?: string;
+  creator?: string;
+  content?: string;
+  media?: MediaObject;
+}
+
 interface NewsItem {
   title?: string;
   link?: string;
   pubDate?: string;
   author?: string;
   content?: string;
-  categories?: string[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  media?: any;
+  categories?: (string | CategoryObject)[];
+  media?: MediaObject;
   source: string;
 }
 
@@ -27,8 +48,7 @@ const parser = new Parser({
 async function fetchFeed(url: string, source: string): Promise<NewsItem[]> {
   try {
     const feed = await parser.parseURL(url);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return feed.items.map((item: any) => ({
+    return feed.items.map((item: CustomItem) => ({
       title: item.title,
       link: item.link,
       pubDate: item.pubDate,
